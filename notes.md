@@ -39,3 +39,13 @@ pip install django
 # --- or to install a specific version:
 pip install django==3.2.4
 ```
+
+## <font color="LightGreen">Creating a Django Project</font>
+
+To create a django project, use the `django-admin` command with the `startproject` option:
+
+``` python
+django-admin startprogect <name-of-project>
+```
+
+This will create a new folder matching the name of the project provided that will have the boilerplate files for a new Django project.
