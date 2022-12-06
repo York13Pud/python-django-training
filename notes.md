@@ -61,3 +61,32 @@ python manage.py runserver
 ```
 
 If the server runs, the output will show the IP address and port that the server is running on. Using that, it will take you to the default page for Django.
+
+## <font color="LightGreen">Main Django Files</font>
+
+* manage.py - This is the file that is used to run the application. *Do not modify this file*.
+* settings.py - This is the file that is used for all of the settings for a Django project, such as the applications, middleware and templates that will make up the application.
+* urls.py - The list of urls / routes that are available and where each one will do.
+
+There are other files but they are less important.
+
+## <font color="LightGreen">Django Applications</font>
+
+Django supports splitting up an application into multiple smaller applications that would account for different functions. For example:
+
+![Django Apps](assets/images/notes/02-django-apps-example.png)
+
+Each app in the example has its own database models, URL routing and templates that are relevant to that application.
+
+Although splitting the project up into separate is not required (you can do everything in one app), it is recommended to split the project up into smaller apps. The main reasons are:
+
+* Performance - If the app gets a heavy load, scaling it out / up will be difficult.
+* Permissions - If the project has multiple apps, access to them can be granular. This means only the devs / admins that need access to the app can be given access to it, rather than the entire app.
+
+To create an app, run the following command:
+
+``` shell
+python manage.py startapp <name-of-app>
+```
+
+A new folder with the name of the app you gave. Inside will be more boilerplate files.
