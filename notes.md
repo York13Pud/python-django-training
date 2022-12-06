@@ -49,3 +49,15 @@ django-admin startprogect <name-of-project>
 ```
 
 This will create a new folder matching the name of the project provided that will have the boilerplate files for a new Django project.
+
+Once the project has been created, the next step is to test that that server will run. To do this, do the following:
+
+``` shell
+# go to the folder with the project files in:
+cd name-of-project
+
+# Next, run the server:
+python manage.py runserver
+```
+
+If the server runs, the output will show the IP address and port that the server is running on. Using that, it will take you to the default page for Django.
