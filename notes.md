@@ -1,6 +1,6 @@
-# <font color="Purple">Django Notes</font>
+# <font color="Magenta">Django Notes</font>
 
-## What is Django?
+## <font color="LightGreen">What is Django?</font>
 
 Django is a web backend framework that uses python.
 
