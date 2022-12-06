@@ -93,4 +93,4 @@ A new folder with the name of the app you gave. Inside will be more boilerplate 
 
 Once the app is created, it needs to be added to the settings.py file (in the INSTALLED_APPS list) in the main project folder.
 
-The format to add the app to the list is folder-name.apps.
+The format to add the app to the list is folder-name.apps.ProjectsConfig.
