@@ -1,4 +1,4 @@
-# Django Notes
+# <font color="Purple">Django Notes</font>
 
 ## What is Django?
 
