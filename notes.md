@@ -121,3 +121,16 @@ Notice that there is no root URL defined. To add one, create a new path as follo
 ``` python
 path('', projects, name = "root")
 ```
+
+To pass dynamic content to a function using the URL, use <> in the part of the URL that will have the content that will change. For example:
+
+``` python
+def project(request, key):
+    return HttpResponse(f"The key is {key}")
+
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('project/<str:key>/', project, name = "project")
+]
+```
