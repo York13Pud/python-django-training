@@ -21,8 +21,14 @@ from django.http import HttpResponse
 def projects(request):
     return HttpResponse("Here are the products")
 
+
+def project(request, key):
+    return HttpResponse(f"The key is {key}")
+
+
 urlpatterns = [
     path('', projects, name = "root"),
     path('admin/', admin.site.urls),
-    path('projects/', projects, name = "projects")
+    path('projects/', projects, name = "projects"),
+    path('project/<str:key>/', project, name = "project")
 ]
