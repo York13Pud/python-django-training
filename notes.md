@@ -45,7 +45,7 @@ pip install django==3.2.4
 To create a django project, use the `django-admin` command with the `startproject` option:
 
 ``` python
-django-admin startprogect <name-of-project>
+django-admin startproject <name-of-project>
 ```
 
 This will create a new folder matching the name of the project provided that will have the boilerplate files for a new Django project.
@@ -97,3 +97,27 @@ The format to add the app to the list is folder-name.apps.ProjectsConfig.
 
 ## <font color="LightGreen">Django Views and URL's</font>
 
+![Django URL's](assets/images/notes/03-urls-views-01.png)
+
+In the `urls.py` file, there is a list of path patterns that are used to tell the server what to do when a particular part of the site is requested.
+
+The below is from the `urls.py` file. It contains two paths; one for the admin portal (added by default) and one for a *projects* url that was manually added.
+
+``` python
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('projects/', projects, name = "projects")
+]
+```
+
+The breakdown of the projects path is as follows:
+
+* 'projects/' - The URL to use.
+* projects - The name of the function / class / view to use.
+* name = 'projects' - An internal name that can be used for reference.
+
+Notice that there is no root URL defined. To add one, create a new path as follows (for example):
+
+``` python
+path('', projects, name = "root")
+```
