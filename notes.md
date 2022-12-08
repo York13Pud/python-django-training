@@ -134,3 +134,6 @@ urlpatterns = [
     path('project/<str:key>/', project, name = "project")
 ]
 ```
+
+## <font color="LightGreen">Django Templates</font>
+
