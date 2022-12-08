@@ -137,3 +137,12 @@ urlpatterns = [
 
 ## <font color="LightGreen">Django Templates</font>
 
+Django templates are basically the HTML content that you want to return to the user.
+
+There are three four to using templates:
+
+1. Create a folder, typically named *templates* in the applications folder.
+2. Create the html templates as needed.
+3. Add the path to the templates folder to the `settings.py` file under the TEMPLATES constant (add it to the DIRS list).
+4. Using the templates with the views that they are for.
+
