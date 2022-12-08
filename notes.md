@@ -207,3 +207,17 @@ In addition to template inheritance, Django also allows for extending a template
     </body>
     ```
 
+## <font color="LightGreen">Django Template Extending with Applications</font>
+
+Up until this point, the templates have been stored in the templates folder at the root of the project. Whilst this is ok and can work if it is just one app.
+
+However though, it is recommended to split the templates up by the actual application. The templates that makeup the skeleton, or are shared with all the apps of the project (for example, main.html) can be kept in there but the rest should be with the application that uses them.
+
+To do this, create a folder in the root of the application called *templates*. Once done, create another folder in the templates folder that matches the name of the application. Once the folders have been created, place any HTML templates you need in the folder named after the application.
+
+To reference the templates in the view, simply add the name of the folder in the path for the render function. For example, an application named *projects* and a template called projects.html, do the following in the views.py file for the application:
+
+``` python
+def projects(request):
+    return render(request, "projects/projects.html")
+```
