@@ -163,7 +163,7 @@ This is achieved by using jinja, which is a part of Django that is used to inser
 
 For example, to insert another template into a template, use the include function:
 
-``` python
+``` html
 <body>
     {% include "navbar.html" %}
     <h1>Projects template</h1>
