@@ -146,3 +146,28 @@ There are three four to using templates:
 3. Add the path to the templates folder to the `settings.py` file under the TEMPLATES constant (add it to the DIRS list).
 4. Using the templates with the views that they are for.
 
+To use a basic template, once the path has been added to the settings.py file, go to the views.py for the application and use the render function to return the template to the user. For example:
+
+``` python
+from django.shortcuts import render
+
+def projects(request):
+    return render(request, "projects.html")
+```
+
+## <font color="LightGreen">Django Template Inheritance</font>
+
+With Django templates, you can include other templates in a template. This is called template inheritance.
+
+This is achieved by using jinja, which is a part of Django that is used to insert (specific) python code into HTML template files.
+
+For example, to insert another template into a template, use the include function:
+
+``` python
+<body>
+    {% include "navbar.html" %}
+    <h1>Projects template</h1>
+</body>
+```
+
+The best use case for this is to split up elements of a page such as the header, navbar and the footer so that they can be easily changed and can take effect on all templates where they are included.
