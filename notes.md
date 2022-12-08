@@ -171,3 +171,39 @@ For example, to insert another template into a template, use the include functio
 ```
 
 The best use case for this is to split up elements of a page such as the header, navbar and the footer so that they can be easily changed and can take effect on all templates where they are included.
+
+## <font color="LightGreen">Django Template Extending</font>
+
+In addition to template inheritance, Django also allows for extending a template to insert content into a particular part of a template by using the extend and block functions. There are two parts to this:
+
+1. Create the template that will be used as the main template file. Inside that file, add a block which will be used to add the content to. For example, create a block called *content* that can be used by a data source to insert the content into:
+   
+    ``` jinja
+    <body>
+
+    {% include "navbar.html" %}
+
+        {% block content %}
+
+        {% endblock content %}
+
+    {% include "footer.html" %}
+
+    </body>
+    ```
+
+2. Using another template (there are other ways to do this), use the extend method to reference the main template and add a block to reference the part of the page that the information needs to be placed. For example, render the below inside of the block named content in the template named main.html:
+
+    ``` jinja
+    <body>
+        {% extends 'main.html' %}
+
+            {% block content %}
+
+                <p>This is some content</p>
+            
+            {% endblock content %}
+        
+    </body>
+    ```
+
