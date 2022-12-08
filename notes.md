@@ -202,7 +202,7 @@ In addition to template inheritance, Django also allows for extending a template
 
                 <p>This is some content</p>
             
-            {% endblock content %}
+            {% endblock %}
         
     </body>
     ```
