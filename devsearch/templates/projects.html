@@ -7,7 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    {% include "navbar.html" %}
-    <h1>Projects template</h1>
+    {% extends 'main.html' %}
+
+        {% block content %}
+
+            <h1>Projects template</h1>
+        
+        {% endblock content %}
+    
 </body>
 </html>
