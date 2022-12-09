@@ -221,3 +221,26 @@ To reference the templates in the view, simply add the name of the folder in the
 def projects(request):
     return render(request, "projects/projects.html")
 ```
+
+## <font color="LightGreen">Django Template Variables</font>
+
+To use variables in Django (jinja), use `{{ }}` with the variable in between them. For example:
+
+``` jinja
+<p>Hello, my name is {{ persons_name }}</p>
+```
+The variables are passed to the template from the call that rendered the template.
+
+## <font color="LightGreen">Django Template Tags</font>
+
+Tags are used to process python-based logic in a jinja template. They are represented in the format `{% %}` with the code place in between the two % signs. For example:
+
+``` jinja
+{% if user.is_authenticates %} 
+    
+    <p>Hello {{ user.username }}</p>
+
+{% endif %}
+```
+
+Another example has already been shown using the `extends`, `block` and `endblock` functions used to add content dynamically from another template.
