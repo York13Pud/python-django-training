@@ -285,6 +285,16 @@ Next, use the `name = "project"` in the href:
 </body>
 ```
 
-To break this down, `url` references that this is a URL, `'project'` is the name of the URL and `project.id` is the id of an entry in the list of dictionaries that was passed to the template.
+To break this down: 
+
+`<a href="{% url 'project' project.id %}">`
+
+* `url` references that this is a URL.
+* `'project'` is the name of the URL and
+* `project.id` is the id of an entry in the list of dictionaries that was passed to the template.
+
+The URL in the browser will look the same as normal as it will know no different. In this case, it will look like:
+
+`<a href="/project/1">`
 
 Why would Django recommend using a name instead of a (partially) statically typed out URL? If the name is used, the URL in the `urls.py` file can be changed and will work with links on other pages that use the name. If not, then those pages will need to be updated manually.
