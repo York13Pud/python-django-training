@@ -229,7 +229,17 @@ To use variables in Django (jinja), use `{{ }}` with the variable in between the
 ``` jinja
 <p>Hello, my name is {{ persons_name }}</p>
 ```
-The variables are passed to the template from the call that rendered the template.
+The variables are passed to the template from the call that rendered the template. For example, pass a message to the template:
+
+``` python
+def projects(request):
+    comment = "Hello World!"
+    return render(request, "projects/projects.html", {"message": comment})
+```
+
+The dictionary that is passed to the template can contain multiple variables.
+
+In the jinja template, use `{{ message }}` where it needs to be shown.
 
 ## <font color="LightGreen">Django Template Tags</font>
 
@@ -238,7 +248,7 @@ Tags are used to process python-based logic in a jinja template. They are repres
 ``` jinja
 {% if user.is_authenticates %} 
     
-    <p>Hello {{ user.username }}</p>
+    <p>Hello {{ user.username }}.</p>
 
 {% endif %}
 ```
