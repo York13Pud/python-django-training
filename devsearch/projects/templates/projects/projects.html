@@ -16,11 +16,21 @@
 
             {% if number < 50 %}
                 <p>The number is less than 50</p>
+            {% elif number == 50 %}
+                <p>The number is equal to 50</p>
             {% else %}
-                <p>The number is equal to or more than 50</p>
+                <p>The number is more than 50</p>
             {% endif %}
 
-        {% endblock %}
+        
+            <hr>
+            <h1>Projects List</h1>
+            <ul>
+                {% for project in projects %}
+                    <li>Title: <a href="{% url 'project' project.id %}"> {{ project.title }}</a></li>
+                {% endfor %}
+            </ul>
     
+    {% endblock %}
 </body>
 </html>
