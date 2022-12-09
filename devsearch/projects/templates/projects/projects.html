@@ -11,8 +11,15 @@
 
         {% block content %}
 
-            <h1>{{ message }}</h1>
-        
+            <h2>{{ message }}</h2>
+            <p>The number is {{ number }}.</p>
+
+            {% if number < 50 %}
+                <p>The number is less than 50</p>
+            {% else %}
+                <p>The number is equal to or more than 50</p>
+            {% endif %}
+
         {% endblock %}
     
 </body>
