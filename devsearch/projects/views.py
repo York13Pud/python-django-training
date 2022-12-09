@@ -7,7 +7,12 @@ from django.http import HttpResponse
 
 def projects(request):
     message = "Hello World!"
-    return render(request, "projects/projects.html", {"message": message})
+    number = 50
+    context = {"message": message,
+               "number": number
+              }
+    
+    return render(request, "projects/projects.html", context = context)
 
 
 def project(request, key):
