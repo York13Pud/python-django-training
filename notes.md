@@ -254,3 +254,6 @@ Tags are used to process python-based logic in a jinja template. They are repres
 ```
 
 Another example has already been shown using the `extends`, `block` and `endblock` functions used to add content dynamically from another template.
+
+## <font color="LightGreen">Django Template Dynamic HREF Links</font>
+
