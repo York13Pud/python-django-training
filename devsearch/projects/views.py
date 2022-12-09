@@ -6,7 +6,8 @@ from django.http import HttpResponse
 
 
 def projects(request):
-    return render(request, "projects/projects.html")
+    message = "Hello World!"
+    return render(request, "projects/projects.html", {"message": message})
 
 
 def project(request, key):
