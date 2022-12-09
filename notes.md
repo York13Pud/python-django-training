@@ -257,3 +257,34 @@ Another example has already been shown using the `extends`, `block` and `endbloc
 
 ## <font color="LightGreen">Django Template Dynamic HREF Links</font>
 
+If there is a need to create a hyperlink that uses dynamic data, such as a variable, there are two ways to do this:
+
+1. Use the standard `<a href>` tag with the URL path and then use `{{ var_name }}` where needed.
+2. Use the Django way and use the `<a href>` tag with a name of a URL that was previously added in the urls.py file. For example:
+
+``` python
+# --- From the urls.py file
+path('project/<str:key>/', views.project, name = "project")
+```
+
+Next, use the `name = "project"` in the href:
+
+``` jinja
+<body>
+    {% extends 'main.html' %}
+
+        {% block content %}
+            <h1>Projects List</h1>
+            <ul>
+                {% for project in projects %}
+                    <li>Title: <a href="{% url 'project' project.id %}"> {{ project.title }}</a></li>
+                {% endfor %}
+            </ul>
+    
+    {% endblock %}
+</body>
+```
+
+To break this down, `url` references that this is a URL, `'project'` is the name of the URL and `project.id` is the id of an entry in the list of dictionaries that was passed to the template.
+
+Why would Django recommend using a name instead of a (partially) statically typed out URL? If the name is used, the URL in the `urls.py` file can be changed and will work with links on other pages that use the name. If not, then those pages will need to be updated manually.
