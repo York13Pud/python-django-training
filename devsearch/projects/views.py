@@ -27,7 +27,9 @@ def projects(request):
                "projects": projects_list
               }
     
-    return render(request, "projects/projects.html", context = context)
+    return render(request, 
+                  "projects/projects.html", 
+                  context = context)
 
 
 def project(request, key):
@@ -35,4 +37,7 @@ def project(request, key):
     for id in projects_list:
         if id["id"] == key:
             project_id = id
-    return render(request, "projects/project.html", context = {"project": project_id})
+
+    return render(request, 
+                  "projects/project.html", 
+                  context = {"project": project_id})
