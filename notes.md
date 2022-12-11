@@ -324,7 +324,7 @@ Fill out the details required. The account can then be used to access the admin 
 
 The main use for the admin portal is to create users and groups that can be used to administer the project. It can also be used to make changes to other tables in the database as they are added.
 
-## <font color="LightGreen">Django Models</font>
+## <font color="LightGreen">Django Models and Migrations</font>
 
 Models are class-based representations of tables in Django. An example of a model is shown below:
 
@@ -336,4 +336,31 @@ Now, when a model is created, the changes do not take effect when the server is 
 python manage.py makemigrations
 ```
 
-What a migration will do is look for any new changes in the models.py files that are in the individual apps, convert them into SQL statements and save those changes to a file.
+What a migration will do is look for any new changes in the models.py files that are in the individual apps, convert them into python commands to make the changes and save those changes to a file. After that, the migrations need to be processed as again, they are not performed when the server starts or reloads. To make the changes take effect, run:
+
+``` python
+python manage.py migrate
+```
+
+The changes will now be visible in the database.
+
+By default, the name of the table will be the app name and then the name of the class. For example, `projects_project`.
+
+Now that the model has been migrated and the table has been created in the database, the last step is to register the model with the admin panel. To do this, perform the following steps:
+
+1. Open the `admin.py` file in the apps folder.
+2. Import the model that needs to be registered.
+3. Create a registration for the model with the admin panel.
+
+The below example shows how to register a model called *Project*:
+
+``` python
+from django.contrib import admin
+
+from .models import Project
+
+# Register the models here.
+admin.site.register(model_or_iterable = Project)
+```
+
+The table will now show up in the admin panel. Rows can be added in the admin panel or by using another app.
