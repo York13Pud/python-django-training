@@ -336,7 +336,7 @@ Now, when a model is created, the changes do not take effect when the server is 
 python manage.py makemigrations
 ```
 
-What a migration will do is look for any new changes in the models.py files that are in the individual apps, convert them into python commands to make the changes and save those changes to a file. After that, the migrations need to be processed as again, they are not performed when the server starts or reloads. To make the changes take effect, run:
+What a migration will do is look for any new changes in the models.py files that are in the individual apps that are registered in the `settings.py` file, convert them into python commands to make the changes and save those changes to a file. After that, the migrations need to be processed as again, they are not performed when the server starts or reloads. To make the changes take effect, run:
 
 ``` python
 python manage.py migrate
