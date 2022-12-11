@@ -300,7 +300,7 @@ The URL in the browser will look the same as normal as it will know no different
 
 Why would Django recommend using a name instead of a (partially) statically typed out URL? If the name is used, the URL in the `urls.py` file can be changed and will work with links on other pages that use the name. If not, then those pages will need to be updated manually.
 
-## <font color="LightGreen">Django Models and Admin Panel</font>
+## <font color="LightGreen">Django Admin Panel</font>
 
 The connection for the database is stored in `settings.py` under *DATABASES*.
 
@@ -320,4 +320,20 @@ By default, no user for the admin panel is created. To create a *superuser*, run
 python manage.py createsuperuser
 ```
 
-Fill out the details required. The account can then be used to access the admin panel.
+Fill out the details required. The account can then be used to access the admin panel. The default URL for the admin panel is `http://localhost:8000/admin`.
+
+The main use for the admin portal is to create users and groups that can be used to administer the project. It can also be used to make changes to other tables in the database as they are added.
+
+## <font color="LightGreen">Django Models</font>
+
+Models are class-based representations of tables in Django. An example of a model is shown below:
+
+![Django Models](assets/images/notes/04-django-models.png)
+
+Now, when a model is created, the changes do not take effect when the server is reloaded. To get the changes into the database, a migration needs to be created. To create a migration, run:
+
+``` python
+python manage.py makemigrations
+```
+
+What a migration will do is look for any new changes in the models.py files that are in the individual apps, convert them into SQL statements and save those changes to a file.
