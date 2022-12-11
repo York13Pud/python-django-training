@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Project
+
+# Register the models here.
+admin.site.register(model_or_iterable = Project)
