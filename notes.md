@@ -112,9 +112,9 @@ urlpatterns = [
 
 The breakdown of the projects path is as follows:
 
-* 'projects/' - The URL to use.
-* projects - The name of the function / class / view to use.
-* name = 'projects' - An internal name that can be used for reference.
+* `'projects/'` - The URL to use.
+* `projects` - The name of the function / class / view to use.
+* `name = 'projects'` - An internal name that can be used for reference.
 
 Notice that there is no root URL defined. To add one, create a new path as follows (for example):
 
@@ -177,7 +177,7 @@ The best use case for this is to split up elements of a page such as the header,
 In addition to template inheritance, Django also allows for extending a template to insert content into a particular part of a template by using the extend and block functions. There are two parts to this:
 
 1. Create the template that will be used as the main template file. Inside that file, add a block which will be used to add the content to. For example, create a block called *content* that can be used by a data source to insert the content into:
-   
+
     ``` jinja
     <body>
 
@@ -229,6 +229,7 @@ To use variables in Django (jinja), use `{{ }}` with the variable in between the
 ``` jinja
 <p>Hello, my name is {{ persons_name }}</p>
 ```
+
 The variables are passed to the template from the call that rendered the template. For example, pass a message to the template:
 
 ``` python
@@ -285,7 +286,7 @@ Next, use the `name = "project"` in the href:
 </body>
 ```
 
-To break this down: 
+To break this down:
 
 `<a href="{% url 'project' project.id %}">`
 
