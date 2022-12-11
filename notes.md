@@ -299,3 +299,25 @@ The URL in the browser will look the same as normal as it will know no different
 `<a href="/project/1">`
 
 Why would Django recommend using a name instead of a (partially) statically typed out URL? If the name is used, the URL in the `urls.py` file can be changed and will work with links on other pages that use the name. If not, then those pages will need to be updated manually.
+
+## <font color="LightGreen">Django Models and Admin Panel</font>
+
+The connection for the database is stored in `settings.py` under *DATABASES*.
+
+By default, a SQLite3 database is created with the Django application and has nothing inside of it. In addition, the admin panel for Django will not work until the database as the appropriate tables inside of it.
+
+To create the tables, a database migration needs to be done. By default, there are ~18 migrations to perform once you have created the app / project. The reason these migrations are not done by default is because a different database server might be required and it makes sense to configure that connection first and then perform the migration.
+
+To perform a database migration with Django, run the following:
+
+``` python
+python manage.py migrate
+```
+
+By default, no user for the admin panel is created. To create a *superuser*, run the following command:
+
+``` python
+python manage.py createsuperuser
+```
+
+Fill out the details required. The account can then be used to access the admin panel.
