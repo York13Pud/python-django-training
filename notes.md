@@ -375,6 +375,32 @@ There are three types of relationship in a database between tables:
 
 Unlike a one-to-many relationship where the table that is the many side is used to store the data, a many-to-may relationship between two tables requires an intermediatory table which is a table that contains the id (typically) of each table record. For example:
 
-![Intermediatary table](assets/images/notes/05-intermediatory-table.png)
+![Intermediatory table](assets/images/notes/05-intermediatory-table.png)
 
 Django will create the intermediatory table when a many-to-many is defined.
+
+To create a one-to-many relationship column in Django, the below is an example of how to do it using the model.ForeignKey parameter. There are a number of options available:
+
+``` python
+class Review(models.Model):
+    id = models.UUIDField(primary_key = True,
+                          default = uuid.uuid4, 
+                          unique = True, 
+                          editable = False)
+    project = models.ForeignKey(Project, 
+                                on_delete = models.CASCADE)
+    body = models.TextField(null=True, 
+                            blank = True)
+    created = models.DateTimeField(auto_now_add = True)
+```
+
+The `models.CASCADE` parameter will delete any records that relate to the Project if it is deleted.
+
+To create a many-to-many relationship, the method is different to that of a one-to-one/many in that the parameter to use is called `model.ManyToManyField`. For example (extra field added to the Project model):
+
+``` Python
+tag = models.ManyToManyField("Tag",
+                             blank = True)
+```
+
+When a migration is performed, an intermediatory table will be created wth the id of both the tag and project, along with an id for the table.
