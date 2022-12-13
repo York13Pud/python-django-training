@@ -3,8 +3,8 @@ import uuid
 
 # Create your models here.
 class Project(models.Model):
-    """ Define a simple model to add some example data into.
-    """
+    """ Define a simple model to add some example data into."""
+    
     id = models.UUIDField(primary_key = True, 
                           default = uuid.uuid4, 
                           unique = True, 
@@ -20,8 +20,13 @@ class Project(models.Model):
                                    blank = True)
     tag = models.ManyToManyField("Tag",
                                  blank = True)
+    vote_totals = models.IntegerField(default = 0, 
+                                      null = True, 
+                                      blank = True)
+    vote_ratio = models.IntegerField(default = 0, 
+                                     null = True, 
+                                     blank = True)
     created = models.DateTimeField(auto_now_add = True)
-    
     
     def __str__(self):
         """_summary_
