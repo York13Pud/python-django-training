@@ -366,3 +366,10 @@ admin.site.register(model_or_iterable = Project)
 The table will now show up in the admin panel. Rows can be added in the admin panel or by using another app.
 
 ## <font color="LightGreen">Django Database Relationships</font>
+
+There are three types of relationship in a database between tables:
+
+* One-to-one
+* One-to-many
+* Many-to-many
+
