@@ -369,7 +369,12 @@ The table will now show up in the admin panel. Rows can be added in the admin pa
 
 There are three types of relationship in a database between tables:
 
-* One-to-one
-* One-to-many
-* Many-to-many
+* One-to-one: One entry in a table can be related to one entry in another table.
+* One-to-many: One entry in a table can be related to many entries in another table.
+* Many-to-many: Multiple entries in a table can be related to multiple entries in another table.
 
+Unlike a one-to-many relationship where the table that is the many side is used to store the data, a many-to-may relationship between two tables requires an intermediatory table which is a table that contains the id (typically) of each table record. For example:
+
+![Intermediatary table](assets/images/notes/05-intermediatory-table.png)
+
+Django will create the intermediatory table when a many-to-many is defined.
