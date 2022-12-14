@@ -406,3 +406,9 @@ tag = models.ManyToManyField("Tag",
 When a migration is performed, an intermediatory table will be created wth the id of both the tag and project, along with an id for the table.
 
 ## <font color="LightGreen">Django Database Queries</font>
+
+The below depicts a basic query structure using Django:
+
+![Query set](assets/images/notes/06-query-det.png)
+
+Queries are stored in the *views.py* file.
