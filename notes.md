@@ -404,3 +404,5 @@ tag = models.ManyToManyField("Tag",
 ```
 
 When a migration is performed, an intermediatory table will be created wth the id of both the tag and project, along with an id for the table.
+
+## <font color="LightGreen">Django Database Queries</font>
