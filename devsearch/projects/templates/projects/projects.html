@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% extends 'main.html' %}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        {% extends 'main.html' %}
 
-        {% block content %}
+            {% block content %}
+                <h1>Projects List</h1>
+                
+                <table border=1>
+                    <tr>
+                        <th>ID</th>
+                        <th>Project Name</th>
+                        <th>Positive Votes</th>
+                        <th>Ratio</th>
+                        <th>Created</th>
+                    </tr>
+                    
+                    {% for project in projects %}
+                        <tr>
+                            <td>{{ project.id }}</td>
+                            <td><a href="{% url 'project' project.id %}"> {{ project.title }}</a></td>
+                            <td>{{ project.vote_totals }}</td>
+                            <td>{{ project.vote_ratio }}%</td>
+                            <td>{{ project.created }}</td>
+                        </tr>
+                    {% endfor %}                    
 
-            <h2>{{ message }}</h2>
-            <p>The number is {{ number }}.</p>
-
-            {% if number < 50 %}
-                <p>The number is less than 50</p>
-            {% elif number == 50 %}
-                <p>The number is equal to 50</p>
-            {% else %}
-                <p>The number is more than 50</p>
-            {% endif %}
-
+                </table>
         
-            <hr>
-            <h1>Projects List</h1>
-            <ul>
-                {% for project in projects %}
-                    <li>Title: <a href="{% url 'project' project.id %}"> {{ project.title }}</a></li>
-                {% endfor %}
-            </ul>
-    
-    {% endblock %}
-</body>
+        {% endblock %}
+    </body>
 </html>
