@@ -1,31 +1,13 @@
 from django.shortcuts import render
-# from django.http import HttpResponse
-
+from django.http import HttpResponse
+from .models import Project
 
 # Create your views here.
-projects_list = [
-                 {'id': '1', 
-                  'title': 'Ecommerce Website', 
-                  'description': 'Fully functional ecommerce website'
-                 }, 
-                 {'id': '2', 
-                  'title': 'Portfolio Website', 
-                  'description': 'A personal website to write articles and display work'
-                 },
-                 {'id': '3', 
-                  'title': 'Social Network', 
-                  'description': 'An open source project built by the community'
-                 }
-                ]
 
 
 def projects(request):
-    message = "Hello World!"
-    number = 48
-    context = {"message": message,
-               "number": number,
-               "projects": projects_list
-              }
+    projects = Project.objects.all()
+    context = {"projects": projects}
     
     return render(request, 
                   "projects/projects.html", 
@@ -33,11 +15,8 @@ def projects(request):
 
 
 def project(request, key):
-    project_id = None
-    for id in projects_list:
-        if id["id"] == key:
-            project_id = id
-
+    project_obj = Project.objects.get(id = key)
+    tags = project_obj.tag.all()
     return render(request, 
                   "projects/project.html", 
-                  context = {"project": project_id})
+                  context = {"project_obj": project_obj, "tags": tags})
