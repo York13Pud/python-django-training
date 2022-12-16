@@ -413,4 +413,10 @@ The below depicts a basic query structure using Django:
 
 Queries are stored in the *views.py* file.
 
-A reference of some query types in Django are stored [here](./assets/images/notes/07-querysets-list.png)
+A reference of some query types in Django are stored [here](./assets/images/notes/07-querysets-list.png).
+
+## <font color="LightGreen">Django Model Forms</font>
+
+A Django model form is a way for Django to create a web form that is based on a defined model in an app.
+
+A csrf token is required in the entry form to ensure that what is submitted is not modified in-transit.
