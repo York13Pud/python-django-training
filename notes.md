@@ -426,3 +426,8 @@ Process:
 1. Create an HTML page with the form area on.
 2. Create a view for the page to be rendered.
 3. Add a *urlpattern* to the `urls.py` file for the view.
+4. Add a link to the view, where needed.
+5. Create a file in the applications root folder and call it `forms.py`.
+6. Add a class to create the form.
+7. Reference the form class in the view and pass it to the template.
+8. Add the variable for the form in the template.
