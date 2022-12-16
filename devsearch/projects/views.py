@@ -20,3 +20,8 @@ def project(request, key):
     return render(request, 
                   "projects/project.html", 
                   context = {"project_obj": project_obj, "tags": tags})
+    
+
+def create_project(request):
+    context = {}
+    return render(request, "projects/project-form.html", context)
