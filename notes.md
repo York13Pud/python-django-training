@@ -420,3 +420,9 @@ A reference of some query types in Django are stored [here](./assets/images/note
 A Django model form is a way for Django to create a web form that is based on a defined model in an app.
 
 A csrf token is required in the entry form to ensure that what is submitted is not modified in-transit.
+
+Process:
+
+1. Create an HTML page with the form area on.
+2. Create a view for the page to be rendered.
+3. Add a *urlpattern* to the `urls.py` file for the view.
