@@ -409,6 +409,8 @@ When a migration is performed, an intermediatory table will be created wth the i
 
 The below depicts a basic query structure using Django:
 
-![Query set](assets/images/notes/06-query-det.png)
+![Query set](assets/images/notes/06-query-set.png)
 
 Queries are stored in the *views.py* file.
+
+A reference of some query types in Django are stored [here](./assets/images/notes/07-querysets-list.png)
