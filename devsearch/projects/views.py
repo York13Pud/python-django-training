@@ -44,9 +44,22 @@ def update_project(request, key):
     
     # --- If the request is POST, check that the form is valid and then save it to the database:
     if request.method == "POST":
+        # --- Passing instance = project will pre-populate the fields on the form with the current records data:
         form = Project_Form(request.POST, instance = project)
         if form.is_valid():
             form.save()
             return redirect("projects")
         
     return render(request, "projects/project-form.html", context)
+
+
+def delete_project(request, key):
+    project = Project.objects.get(id = key)
+    context = {"object": project}
+    
+    if request.method == "POST":
+        # --- Passing instance = project will pre-populate the fields on the form with the current records data:
+        project.delete()    
+        return redirect("projects")
+    
+    return render(request, "projects/delete-template.html", context)
