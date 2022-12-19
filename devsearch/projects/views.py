@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Project
 from .forms import Project_Form
@@ -26,4 +26,29 @@ def project(request, key):
 def create_project(request):
     form = Project_Form
     context = {"form": form}
+    
+    # --- If the request is POST, check that the form is valid and then save it to the database:
+    if request.method == "POST":
+        form = Project_Form(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("projects")
+        
+        
+    return render(request, "projects/project-form.html", context)
+
+
+def update_project(request, key):
+    project = Project.objects.get(id = key)
+    form = Project_Form
+    context = {"form": form}
+    
+    # --- If the request is POST, check that the form is valid and then save it to the database:
+    if request.method == "POST":
+        form = Project_Form(request.POST, instance = project)
+        if form.is_valid():
+            form.save()
+            return redirect("projects")
+        
+        
     return render(request, "projects/project-form.html", context)
