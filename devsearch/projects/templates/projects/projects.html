@@ -23,7 +23,6 @@
                     
                     {% for project in projects %}
                         <tr>
-                            <td>{{ project.id }}</td>
                             <td><a href="{% url 'project' project.id %}"> {{ project.title }}</a></td>
                             <td>{{ project.vote_totals }}</td>
                             <td>{{ project.vote_ratio }}%</td>
