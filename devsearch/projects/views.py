@@ -32,15 +32,14 @@ def create_project(request):
         form = Project_Form(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("projects")
-        
+            return redirect("projects")   
         
     return render(request, "projects/project-form.html", context)
 
 
 def update_project(request, key):
     project = Project.objects.get(id = key)
-    form = Project_Form
+    form = Project_Form(instance = project)
     context = {"form": form}
     
     # --- If the request is POST, check that the form is valid and then save it to the database:
@@ -49,6 +48,5 @@ def update_project(request, key):
         if form.is_valid():
             form.save()
             return redirect("projects")
-        
         
     return render(request, "projects/project-form.html", context)
