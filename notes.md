@@ -433,3 +433,22 @@ Process:
 8. Add the variable for the form in the template.
 
 ## <font color="LightGreen">Django CRUD Operations</font>
+
+## <font color="LightGreen">Django Static Files</font>
+
+Static files include, but are not limited to:
+
+* CSS files
+* Images
+* JavaScript files
+* PDF files
+
+By default, Django does not have a path set for the static files, unlike Flask. You need to add it to the `settings.py` file in the following way (folder will be called static at the root of the project):
+
+``` python
+STATIC_URL = '/static/'
+
+STATIC_FILES_DIRS = [BASE_DIR / 'static']
+```
+
+The `STATIC_FILES_DIRS` is not in the `settings.py` file by default but the `STATIC_URL` is.
