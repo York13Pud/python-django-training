@@ -469,3 +469,7 @@ Now, the STATIC_URL will not be available in the browser (unless it is added to 
     </body>
 </html>
 ```
+
+The same process will be applicable for any static file that is used.
+
+Each page template that has references to static files requires `{% load static %}` to present in the template. Usually this is located towards the top of the template.
