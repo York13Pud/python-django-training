@@ -452,3 +452,4 @@ STATIC_FILES_DIRS = [BASE_DIR / 'static']
 ```
 
 The `STATIC_FILES_DIRS` is not in the `settings.py` file by default but the `STATIC_URL` is.
+
