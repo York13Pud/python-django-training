@@ -447,9 +447,25 @@ By default, Django does not have a path set for the static files, unlike Flask. 
 
 ``` python
 STATIC_URL = '/static/'
-
-STATIC_FILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATICFILES_DIRS = [BASE_DIR / 'static'] # also works on newer (3.2+) versions of Django
 ```
 
-The `STATIC_FILES_DIRS` is not in the `settings.py` file by default but the `STATIC_URL` is.
+The `STATICFILES_DIRS` is not in the `settings.py` file by default but the `STATIC_URL` is.
 
+Now, the STATIC_URL will not be available in the browser (unless it is added to the `urls.py` file). Instead, it is only available using jinja in the templates files. To add a CSS file for example to an HTML template:
+
+``` jinja
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href='{% static "styles/main.css" %}'>
+    <title>Dev Search</title>
+</head>
+    <body>
+        <h1>This is the main page</h1>
+    </body>
+</html>
+```
