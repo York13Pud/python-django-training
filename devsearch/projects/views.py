@@ -29,7 +29,7 @@ def create_project(request):
     
     # --- If the request is POST, check that the form is valid and then save it to the database:
     if request.method == "POST":
-        form = Project_Form(request.POST)
+        form = Project_Form(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect("projects")   
@@ -45,7 +45,7 @@ def update_project(request, key):
     # --- If the request is POST, check that the form is valid and then save it to the database:
     if request.method == "POST":
         # --- Passing instance = project will pre-populate the fields on the form with the current records data:
-        form = Project_Form(request.POST, instance = project)
+        form = Project_Form(request.POST, request.FILES, instance = project)
         if form.is_valid():
             form.save()
             return redirect("projects")

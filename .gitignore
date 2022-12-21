@@ -137,3 +137,6 @@ dmypy.json
 
 # Mic files to ignore
 database.db
+
+# Ignore staticfiles
+staticfiles/

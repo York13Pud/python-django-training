@@ -556,8 +556,47 @@ class Project_Form(ModelForm):
         fields = ["title", "description", "featured_image", "demo_link", "source_link", "tag"]
 ```
 
+In the HTML template that is used to upload the image, there is an additional change to make in the form tag by way of adding the enctype to it:
+
+``` jinja
+{% extends 'main.html' %}
+
+{% block content %}
+<h1>Project Form</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!-- as_p will wrap each label+form in a p tag to help tidy it up -->
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock content %}
+```
+
+After that is done, the view needs to be updated to process the image as it will not upload otherwise. This part requires that `request.FILES` be added to any view that processes an upload. For example:
+
+``` python
+def create_project(request):
+    form = Project_Form
+    context = {"form": form}
+    
+    # --- If the request is POST, check that the form is valid and then save it to the database:
+    if request.method == "POST":
+        form = Project_Form(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("projects")   
+        
+    return render(request, "projects/project-form.html", context)
+```
+
+NOTE: If the file name is a duplicate, it will append some additional characters to the end of the file name before the image name is written to the database table record. That new filename will be shown in the table.
+
 To access the image in an HTML template, the following is added to the template:
 
 ``` jinja
 <img src={{ project_obj.featured_image.url }}>
 ```
+
+## <font color="LightGreen">Django Static Files in Production</font>
