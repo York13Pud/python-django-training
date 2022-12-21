@@ -604,7 +604,7 @@ To access the image in an HTML template, the following is added to the template:
 The previous section will work for development but in production, Django is no designed to serve static content like images. Instead it depends on another provider such as S3. In this case, whitenoise will be used as a middleware provider to serve the static files. The following changes will need to be made.
 
 1. Set `DEBUG = False` in `settings.py`.
-2. Set `ALLOWED_HOSTS = ["127.0.0.1"]` in `settings.py`.
+2. Set `ALLOWED_HOSTS = ["127.0.0.1"]` in `settings.py`. For the time being.
 3. Add `STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')` in `settings.py`.
 4. Add `urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)` in `urls.py`.
 5. Run `python manage.py collectstatic` to copy all static files (including those for the admin console) to the *staticfiles* folder.
