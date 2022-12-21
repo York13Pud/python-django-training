@@ -611,3 +611,5 @@ The previous section will work for development but in production, Django is no d
 6. Install whitenoise using `python -m pip install whitenoise`.
 7. Add `'whitenoise.middleware.WhiteNoiseMiddleware',` to the `MIDDLEWARE` list in `settings.py`.
 8. Re-run the server and hard refresh the page. The images and CSS should now render.
+
+The only downside of whitenoise is that it will not serve user uploaded content. For that, use something like AWS S3.
