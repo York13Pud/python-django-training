@@ -470,6 +470,94 @@ Now, the STATIC_URL will not be available in the browser (unless it is added to 
 </html>
 ```
 
-The same process will be applicable for any static file that is used.
+The same process is applicable for any static file that is used.
 
 Each page template that has references to static files requires `{% load static %}` to present in the template. Usually this is located towards the top of the template.
+
+## <font color="LightGreen">Django Upload Media Files</font>
+
+Uploading media files is pretty simple but the setup is long. To summarise the steps to do this:
+
+1. Create a folder, usually in the *static* folder to upload files to. If no folder is specified later on, uploads will be placed in the root of the Django project.
+2. In `settings.py`, add the following:
+
+    ``` python
+    # Uploaded media files
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+    MEDIA_URL = '/images/'
+    ```
+
+3. Add the following to `urls.py`:
+
+``` python
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+```
+
+This will allow the media to be uploaded to the required directory.
+
+Now that the backend is configured, the next step is to make use of the functionality. For example, upload an image to the folder that can be used as a profile image or a product image.
+
+In the below example, an image field is added to a model called projects and after the migration is performed, a new field for the image name is added to the table.
+
+``` python
+class Project(models.Model):
+    """ Define a simple model to add some example data into."""
+    
+    id = models.UUIDField(primary_key = True, 
+                          default = uuid.uuid4, 
+                          unique = True, 
+                          editable = False)
+    title = models.CharField(max_length = 200)
+    description = models.TextField(null=True, 
+                                   blank = True)
+    featured_image = models.ImageField(null = True,
+                                       blank = True,
+                                       default = "default.jpg")
+    demo_link = models.CharField(max_length = 2000, 
+                                 null = True, 
+                                 blank = True)
+    source_link = models.CharField(max_length = 2000, 
+                                   null = True, 
+                                   blank = True)
+    tag = models.ManyToManyField("Tag",
+                                 blank = True)
+    vote_totals = models.IntegerField(default = 0, 
+                                      null = True, 
+                                      blank = True)
+    vote_ratio = models.IntegerField(default = 0, 
+                                     null = True, 
+                                     blank = True)
+    created = models.DateTimeField(auto_now_add = True)
+    
+    def __str__(self):
+        """_summary_
+            This returns a string representation of the title in the admin panel for a row, rather than the object description.
+        Returns:
+            This returns a string representation of the title in the admin panel for a row, rather than the object description.
+        """
+        return self.title
+```
+
+NOTE: The `ImageField` requires that a library called *pillow* to be installed. Pillow handles media files and can be installed using pip:
+
+``` bash
+pip install pillow
+```
+
+To upload the image, if the form is set to create an entry for all fields, then nothing needs to be done. Otherwise, `forms.py` will need to have the field entry added to the list. For example:
+
+``` python
+class Project_Form(ModelForm):
+    class Meta:
+        model = Project
+        fields = ["title", "description", "featured_image", "demo_link", "source_link", "tag"]
+```
+
+To access the image in an HTML template, the following is added to the template:
+
+``` jinja
+<img src={{ project_obj.featured_image.url }}>
+```
