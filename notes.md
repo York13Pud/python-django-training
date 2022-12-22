@@ -613,5 +613,3 @@ The previous section will work for development but in production, Django is no d
 8. Re-run the server and hard refresh the page. The images and CSS should now render.
 
 The only downside of whitenoise is that it will not serve user uploaded content. For that, use something like AWS S3.
-
-## <font color="LightGreen">Django Installing a Theme</font>
