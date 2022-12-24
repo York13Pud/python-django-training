@@ -434,6 +434,8 @@ Process:
 
 ## <font color="LightGreen">Django CRUD Operations</font>
 
+![07-querysets-list](/assets/images/notes/07-querysets-list.png)
+
 ## <font color="LightGreen">Django Static Files</font>
 
 Static files include, but are not limited to:
