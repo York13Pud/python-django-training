@@ -9,7 +9,7 @@ from .forms import Project_Form
 def projects(request):
     projects = Project.objects.all()
     context = {"projects": projects}
-    print(projects)
+    #print(projects[1].tag.__dict__)
     return render(request, 
                   "projects/projects.html", 
                   context = context)
