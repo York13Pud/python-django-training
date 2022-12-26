@@ -20,7 +20,7 @@ def project(request, key):
     tags = project_obj.tag.all()
     return render(request, 
                   "projects/project.html", 
-                  context = {"project_obj": project_obj, "tags": tags})
+                  context = {"project": project_obj, "tags": tags})
     
 
 def create_project(request):
