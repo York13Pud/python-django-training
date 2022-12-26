@@ -10,24 +10,22 @@
             <div class="column column--1of3">
                 <h3 class="singleProject__subtitle">Tools & Stacks</h3>
                 <div class="singleProject__toolStack">
-                    {% for tag in project.tags.all %}
-                    <span class="tag tag--pill tag--sub tag--lg">
-                        <small>{{tag}}</small>
-                    </span>
+                    {% for tag in tags.all %}
+                        <span class="tag tag--pill tag--sub tag--lg">
+                            <small>{{tag}}</small>
+                        </span>
                     {% endfor %}
 
                 </div>
 
                 {% if project.source_link %}
-                <a class="singleProject__liveLink" href="{{project.source_link}}" target="_blank"><i
-                        class="im im-external-link"></i>Source Code
-                </a>
+                <a class="singleProject__liveLink" href="#" target="_blank">
+                    <i class="im im-external-link"></i>Source Code</a>
                 {% endif %}
 
                 {% if project.demo_link %}
-                <a class="singleProject__liveLink" href="{{project.source_link}}" target="_blank"><i
-                        class="im im-external-link"></i>Live Demo
-                </a>
+                <a class="singleProject__liveLink" href="#" target="_blank">
+                    <i class="im im-external-link"></i>Live Demo</a>
                 {% endif %}
 
             </div>
@@ -42,8 +40,8 @@
                 <div class="comments">
                     <h3 class="singleProject__subtitle">Feedback</h3>
                     <h5 class="project--rating">
-                        {{project.vote_ratio}}% Positive Feedback ({{project.vote_total}}
-                        Vote{{project.vote_total|pluralize:"s"}})
+                        {{project.vote_ratio}}% Positive Feedback 
+                        ({{project.vote_totals}} Vote{{ project.vote_totals|pluralize:"s"}})
                     </h5>
 
                     </div>
