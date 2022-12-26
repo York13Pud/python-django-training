@@ -16,8 +16,8 @@
                 <h1>Title: {{ project_obj.title }}</h1>
                 <H2>Date Created: {{ project_obj.created }}</H2>
             
-                {% for tag in tags %}
-                    <span>{{ tag }}</span>
+                {% for linked_tag in tag %}
+                    <span>{{ linked_tag }}</span>
                 {% endfor %}
             
             {% endblock %}

@@ -9,7 +9,7 @@ from .forms import Project_Form
 def projects(request):
     projects = Project.objects.all()
     context = {"projects": projects}
-    
+    print(projects)
     return render(request, 
                   "projects/projects.html", 
                   context = context)
