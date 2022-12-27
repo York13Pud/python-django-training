@@ -1,6 +1,6 @@
 ![Header](/assets/images/header/header.png)
 
-Description of the repo and what it contains
+This repository contains a Django project from a course I did.
 
 ## Instructions
 
