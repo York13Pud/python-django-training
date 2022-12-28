@@ -14,6 +14,9 @@ class Profile(models.Model):
                                 on_delete = models.CASCADE, 
                                 null = True, 
                                 blank = True)
+    username = models.CharField(max_length =200,
+                                null = True, 
+                                blank = True)
     name = models.CharField(max_length =200,
                             null = True, 
                             blank = True)
