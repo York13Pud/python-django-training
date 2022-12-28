@@ -1,6 +1,8 @@
 from django.db import models
 from users.models import Profile
 
+import uuid
+
 # Create your models here.
 class Project(models.Model):
     """ Define a simple model to add some example data into."""
