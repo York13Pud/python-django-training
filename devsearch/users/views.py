@@ -8,5 +8,13 @@ def profiles(request):
     return render(request, "users/profiles.html", context = context)
 
 
-def profile(request):
-    return render(request, "users/profile.html")
+def user_profile(request, pk):
+    profile = Profile.objects.get(id = pk)
+    skills = profile.skill_set.exclude(description__exact = "") # Any description that is blank is ignored.
+    other_skills = profile.skill_set.filter(description="")
+    
+    context = {"profile": profile,
+               "top_skills": skills,
+               "other_skills": other_skills}
+    
+    return render(request, "users/user-profile.html", context = context)
