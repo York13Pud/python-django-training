@@ -621,3 +621,46 @@ The only downside of whitenoise is that it will not serve user uploaded content.
 Signals are listeners that execute an action when an event it is listening for occurs. For example, send an email to a user that has just registered for an account when the account is added to the database.
 
 ![08-signals](/assets/images/notes/08-signals.png)
+
+Typically, the signals are placed into a file named `signals.py` in the same folder as the app they are related to.
+
+The below example will *listen* for a new user to be created in the main Django users database / table and if they are a new user, it will also create a profile in the profile table with just the user, username, email and firstname added:
+
+``` python
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
+from .models import Profile
+
+
+def create_profile(sender, instance, created, **kwargs):
+    """If the account is a new user, create the user in the main 
+    Django users database and create a profile for that user"""
+    
+    if created:
+        user = instance
+        profile = Profile.objects.create(user = user, 
+                                         username = user.username, 
+                                         email = user.email, 
+                                         name = user.first_name)
+
+
+post_save.connect(create_profile, sender = User)
+```
+
+As an alternative, the *receiver* wrapper function can be used on the `create_profile` function instead of `post_ssave.connect()` after the function.
+
+To make the project work with the `signals.py` file, it needs to be added into the `apps.py` file in the application. For example:
+
+``` python
+from django.apps import AppConfig
+
+
+class UsersConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'users'
+    
+    def ready(self) -> None:
+        """Import the signals file. Without this, the signals file is ignored."""
+        import users.signals
+```
