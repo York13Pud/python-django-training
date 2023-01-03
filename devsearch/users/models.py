@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 
 import uuid
 
@@ -92,6 +92,16 @@ def profile_updated(sender, instance, created, **kwargs):
     print("Profile Saved")
     print(f"Instance: {instance}")
     print(f"Created: {created}")
-    
+
+   
 post_save.connect(profile_updated, 
                   sender = Profile)
+
+
+def profile_deleted(sender, instance, **kwargs):
+    print("Profile Deleted")
+    print(f"Instance: {instance}")
+
+
+post_delete.connect(profile_deleted, 
+                    sender = Profile)
