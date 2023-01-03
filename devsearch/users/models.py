@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
 import uuid
 
@@ -60,7 +61,7 @@ class Profile(models.Model):
         Returns:
             This returns a string representation of the title in the admin panel for a row, rather than the object description.
         """
-        return str(self.user.username)
+        return str(self.username)
     
 
 class Skill(models.Model):
@@ -85,3 +86,12 @@ class Skill(models.Model):
             This returns a string representation of the title in the admin panel for a row, rather than the object description.
         """
         return str(self.name)
+
+    
+def profile_updated(sender, instance, created, **kwargs):
+    print("Profile Saved")
+    print(f"Instance: {instance}")
+    print(f"Created: {created}")
+    
+post_save.connect(profile_updated, 
+                  sender = Profile)
