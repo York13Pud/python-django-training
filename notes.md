@@ -618,3 +618,6 @@ The only downside of whitenoise is that it will not serve user uploaded content.
 
 ## <font color="LightGreen">Django Signals</font>
 
+Signals are listeners that execute an action when an event it is listening for occurs. For example, send an email to a user that has just registered for an account when the account is added to the database.
+
+![08-signals](/assets/images/notes/08-signals.png)
