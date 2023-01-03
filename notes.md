@@ -616,4 +616,5 @@ The previous section will work for development but in production, Django is no d
 
 The only downside of whitenoise is that it will not serve user uploaded content. For that, use something like AWS S3.
 
-## <font color="LightGreen">Django Users App</font>
+## <font color="LightGreen">Django Signals</font>
+
