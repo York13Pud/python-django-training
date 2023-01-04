@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from .models import Profile
 
 
@@ -8,6 +9,12 @@ from .models import Profile
 
 
 def login_user(request):
+    
+    # --- This will redirect a logged in user to profiles if they try
+    # --- to access the login page directly.
+    if request.user.is_authenticated:
+        return redirect(to = "profiles")
+    
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
