@@ -46,6 +46,7 @@ def logout_user(request):
                   message= "You were successfully logged out")
     return redirect(to = "login")
 
+
 def profiles(request):
     profiles = Profile.objects.all()
     context = {"profiles": profiles}
