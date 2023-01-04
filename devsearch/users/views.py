@@ -7,7 +7,7 @@ from .models import Profile
 # Create your views here.
 
 
-def login_page(request):
+def login_user(request):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
