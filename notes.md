@@ -670,4 +670,4 @@ class UsersConfig(AppConfig):
 Authentication: Confirms who you are.
 Authorisation: What you are / aren't allowed access to.
 
-Django tracks logged in users (to the admin console) by creating a sessionid, which is stored in a table named sessions (hidden in the admin console) and is also stored in a cookie on the clients side.
+Django tracks logged in users (to the admin console) by creating a sessionid, which is stored in a table named django_sessions (hidden in the admin console) and is also stored in a cookie on the clients side.
