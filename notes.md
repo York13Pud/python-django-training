@@ -648,7 +648,7 @@ def create_profile(sender, instance, created, **kwargs):
 post_save.connect(create_profile, sender = User)
 ```
 
-As an alternative, the *receiver* wrapper function can be used on the `create_profile` function instead of `post_ssave.connect()` after the function.
+As an alternative, the *receiver* wrapper function can be used on the `create_profile` function instead of `post_save.connect()` after the function.
 
 To make the project work with the `signals.py` file, it needs to be added into the `apps.py` file in the application. For example:
 
@@ -664,3 +664,10 @@ class UsersConfig(AppConfig):
         """Import the signals file. Without this, the signals file is ignored."""
         import users.signals
 ```
+
+## <font color="LightGreen">Django User Authentication</font>
+
+Authentication: Confirms who you are.
+Authorisation: What you are / aren't allowed access to.
+
+Django tracks logged in users (to the admin console) by creating a sessionid, which is stored in a table named sessions (hidden in the admin console) and is also stored in a cookie on the clients side.
