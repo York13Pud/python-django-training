@@ -3,13 +3,16 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Profile
 
+from .models import Profile
+from .forms import CustomUserCreationForm
 
 # Create your views here.
 
 
 def login_user(request):
+    page = "login"
+    
     # --- This will redirect a logged in user to profiles if they try
     # --- to access the login page directly.
     if request.user.is_authenticated:
@@ -41,12 +44,43 @@ def login_user(request):
 
 def logout_user(request):
     logout(request = request)
-    messages.info(request = request, message= "You were successfully logged out")
+    messages.info(request = request, 
+                  message= "You were successfully logged out")
     return redirect(to = "login")
 
 
 def register_user(request):
-    return render(request = request, template_name = "user/login_register.html")
+    page = "register"
+    form = CustomUserCreationForm()
+    
+    if request.method == "POST":
+        form = CustomUserCreationForm(request.POST)
+        # --- The below will check if the form is valid. If so, it will
+        # --- save tbe form data temporarily, set the username to lowercase,
+        # --- save the user in the database, create a profile (signal),
+        # --- return a success message and log the user in.
+        if form.is_valid():
+            user = form.save(commit = False)
+            user.username = user.username.lower()
+            user.save()
+            
+            messages.success(request = request, 
+                             message = "User account created!")
+
+            login(request = request, user = user)
+            return redirect(to = "profiles")
+        
+        # --- If the form is not valid, the user will get an error message.
+        else:
+            messages.error(request = request, 
+                           message = "An error ocurred during registration. Please try again.")
+            
+    context = {"page": page,
+               "form": form}
+    
+    return render(request = request, 
+                  template_name = "users/login_register.html", 
+                  context = context)
 
 
 def profiles(request):
