@@ -10,7 +10,6 @@ from .models import Profile
 
 
 def login_user(request):
-    
     # --- This will redirect a logged in user to profiles if they try
     # --- to access the login page directly.
     if request.user.is_authenticated:
@@ -42,9 +41,12 @@ def login_user(request):
 
 def logout_user(request):
     logout(request = request)
-    messages.info(request = request,
-                  message= "You were successfully logged out")
+    messages.info(request = request, message= "You were successfully logged out")
     return redirect(to = "login")
+
+
+def register_user(request):
+    return render(request = request, template_name = "user/login_register.html")
 
 
 def profiles(request):
