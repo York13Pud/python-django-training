@@ -638,6 +638,14 @@ img {
   Login/SignUp
 ========================*/
 
+.alert {
+  position: fixed;
+  left: 50%;
+  top: 135px;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+}
+
 .auth {
   width: 100%;
   position: relative;
