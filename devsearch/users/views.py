@@ -99,3 +99,21 @@ def user_profile(request, pk):
                "other_skills": other_skills}
     
     return render(request, "users/user-profile.html", context = context)
+
+
+def user_account(request, pk):
+    profile = Profile.objects.get(id = pk)
+    context = {}
+    return render(request = request, 
+                  template_name = "users/account.html", 
+                  context = context)
+
+    
+def edit_account(request):
+    context = {}
+    return render(request, "users/user-profile.html", context = context)
+
+
+def create_skill(request):
+    context = {}
+    return render(request, "users/user-profile.html", context = context)
