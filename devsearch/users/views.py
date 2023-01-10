@@ -26,7 +26,7 @@ def login_user(request):
             user = User.objects.get(username = username)
         except:
             messages.error(request = request,
-                           message= "Username does not exist")
+                           message = "Username does not exist")
         
         user = authenticate(request = request,
                             username = username,
@@ -37,15 +37,16 @@ def login_user(request):
             return redirect("profiles")
         else:
             messages.error(request = request,
-                           message= "Username or password is incorrect")
+                           message = "Username or password is incorrect")
     
     return render(request, "users/login_register.html")
 
 
+@login_required(login_url = "login")
 def logout_user(request):
     logout(request = request)
     messages.info(request = request, 
-                  message= "You were successfully logged out")
+                  message = "You were successfully logged out")
     return redirect(to = "login")
 
 
@@ -101,19 +102,40 @@ def user_profile(request, pk):
     return render(request, "users/user-profile.html", context = context)
 
 
-def user_account(request, pk):
-    profile = Profile.objects.get(id = pk)
-    context = {}
+@login_required(login_url = "login")
+def user_account(request):
+    profile = request.user.profile
+    skills = profile.skill_set.all()
+    projects = profile.project_set.all()
+    
+    context = {"profile": profile,
+               "skills": skills,
+               'projects': projects}
+    
     return render(request = request, 
                   template_name = "users/account.html", 
                   context = context)
 
-    
+
+@login_required(login_url = "login")
 def edit_account(request):
     context = {}
     return render(request, "users/user-profile.html", context = context)
 
 
+@login_required(login_url = "login")
 def create_skill(request):
+    context = {}
+    return render(request, "users/user-profile.html", context = context)
+
+
+@login_required(login_url = "login")
+def update_skill(request):
+    context = {}
+    return render(request, "users/user-profile.html", context = context)
+
+
+@login_required(login_url = "login")
+def delete_skill(request):
     context = {}
     return render(request, "users/user-profile.html", context = context)
