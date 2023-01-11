@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from .models import Profile
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, ProfileForm
 
 # Create your views here.
 
@@ -69,7 +69,7 @@ def register_user(request):
                              message = "User account created!")
 
             login(request = request, user = user)
-            return redirect(to = "profiles")
+            return redirect(to = "edit-account")
         
         # --- If the form is not valid, the user will get an error message.
         else:
@@ -119,8 +119,17 @@ def user_account(request):
 
 @login_required(login_url = "login")
 def edit_account(request):
-    context = {}
-    return render(request, "users/user-profile.html", context = context)
+    profile = request.user.profile
+    form = ProfileForm(instance = profile)
+    
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance = profile)
+        if form.is_valid():
+            form.save()
+            return redirect("account")
+            
+    context = {"form": form}
+    return render(request, "users/profile_form.html", context = context)
 
 
 @login_required(login_url = "login")
