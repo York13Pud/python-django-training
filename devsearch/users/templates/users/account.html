@@ -17,30 +17,36 @@
             <p class="dev__location">Based in {{ profile.location }}</p>
 
             <ul class="dev__social">
+
               {% if profile.social_github %}
               <li>
-                <a title="Github" href="{{profile.social_github}}" target="_blank"><i class="im im-github"></i></a>
+                <a title="Github" href="{{profile.social_github}}" target="_blank">
+                  <i class="im im-github"></i>
+                </a>
               </li>
               {% endif %}
 
-
               {% if profile.social_twitter %}
               <li>
-                <a title="Twitter" href="{{ profile.social_twitter }}" target="_blank"><i class="im im-twitter"></i></a>
+                <a title="Twitter" href="{{ profile.social_twitter }}" target="_blank">
+                  <i class="im im-twitter"></i>
+                </a>
               </li>
               {% endif %}
 
               {% if profile.social_linkedin %}
               <li>
-                <a title="LinkedIn" href="{{ profile.social_linkedin }}" target="_blank"><i
-                    class="im im-linkedin"></i></a>
+                <a title="LinkedIn" href="{{ profile.social_linkedin }}" target="_blank">
+                  <i class="im im-linkedin"></i>
+                </a>
               </li>
               {% endif %}
 
               {% if profile.social_website %}
               <li>
-                <a title="Personal Website" href="{{ profile.social_website }}" target="_blank"><i
-                    class="im im-globe"></i></a>
+                <a title="Personal Website" href="{{ profile.social_website }}" target="_blank">
+                  <i class="im im-globe"></i>
+                </a>
               </li>
               {% endif %}
 
@@ -57,8 +63,10 @@
         </div>
         <div class="settings">
           <h3 class="settings__title">Skills</h3>
-          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-skill' %}"><i
-              class="im im-plus"></i> Add Skill</a>
+          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-skill' %}">
+            <i class="im im-plus"></i>
+            Add Skill
+          </a>
         </div>
 
         <table class="settings__table">
@@ -71,11 +79,12 @@
               </p>
             </td>
             <td class="settings__tableActions">
-              <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-skill' %}"><i
-                  class="im im-edit"></i> Edit</a>
-              <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-skill' %}?next=/account"><i
-                  class="im im-x-mark-circle-o"></i>
-                Delete</a>
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-skill' %}">
+                <i class="im im-edit"></i> Edit</a>
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-skill' %}?next=/account">
+                <i class="im im-x-mark-circle-o"></i>
+                Delete
+              </a>
             </td>
           </tr>
           {% endfor %}
@@ -83,8 +92,10 @@
 
         <div class="settings">
           <h3 class="settings__title">Projects</h3>
-          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-project' %}"><i
-              class="im im-plus"></i> Add Project</a>
+          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-project' %}">
+            <i class="im im-plus"></i>
+            Add Project
+          </a>
         </div>
 
         <table class="settings__table">
@@ -95,14 +106,17 @@
             </td>
             <td class="settings__tableInfo">
               <a href="{% url 'project' project.id %}">{{ project.title }}</a>
-              <p>{{project.description|slice:"150"}}</p>
+              <p>{{ project.description|slice:"150" }}</p>
             </td>
             <td class="settings__tableActions">
-              <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-project' project.id %}"><i
-                  class="im im-edit"></i> Edit</a>
-              <a class="tag tag--pill tag--main settings__btn"
-                href="{% url 'delete-project'  project.id %}?next=/account"><i class="im im-x-mark-circle-o"></i>
-                Delete</a>
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-project' project.id %}">
+                <i class="im im-edit"></i>
+                Edit
+              </a>
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-project'  project.id %}?next=/account">
+                <i class="im im-x-mark-circle-o"></i>
+                Delete
+              </a>
             </td>
           </tr>
           {% endfor %}
