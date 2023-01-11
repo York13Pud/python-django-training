@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .models import Project
 from .forms import Project_Form
 
+
 # Create your views here.
 
 
@@ -22,10 +23,11 @@ def project(request, key):
     return render(request, 
                   "projects/project.html", 
                   context = {"project": project_obj, "tags": tags})
-    
+
 
 @login_required(login_url = "login")
 def create_project(request):
+    profile = request.user.profile
     form = Project_Form
     context = {"form": form}
     
@@ -33,7 +35,9 @@ def create_project(request):
     if request.method == "POST":
         form = Project_Form(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            project = form.save(commit = False)
+            project.owner = profile
+            project.save()
             return redirect("projects")   
         
     return render(request, "projects/project-form.html", context)
@@ -41,7 +45,8 @@ def create_project(request):
 
 @login_required(login_url = "login")
 def update_project(request, key):
-    project = Project.objects.get(id = key)
+    profile = request.user.profile
+    project = profile.project_set.get(id = key) # --- Limits updating to the owner
     form = Project_Form(instance = project)
     context = {"form": form}
     
@@ -58,7 +63,8 @@ def update_project(request, key):
 
 @login_required(login_url = "login")
 def delete_project(request, key):
-    project = Project.objects.get(id = key)
+    profile = request.user.profile
+    project = profile.project_set.get(id = key) # --- Limits updating to the owner
     context = {"object": project}
     
     if request.method == "POST":
